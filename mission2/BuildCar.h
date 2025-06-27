@@ -39,7 +39,7 @@ enum Engine
     EnginCount
 };
 const std::vector<std::string> EnginName = {
-    "NONE", "GM", "WIA", "BROKEN"
+    "NONE", "GM", "TOYOTA", "WIA", "BROKEN"
 };
 
 enum brakeSystem

@@ -150,7 +150,6 @@ TEST(GroupBuildCar, TC_ProcessCarAssembleStep_RunTest2) {
 TEST(GroupBuildCar, TC_ProcessCarAssembleStep_runProducedCar_NormalCase) {
 	CarBuilder carBuilder;
 
-	int answer = SEDAN;
 	carBuilder.processCarAssembleStep(SEDAN);
 	carBuilder.processCarAssembleStep(GM);
 	carBuilder.processCarAssembleStep(MANDO);
@@ -163,7 +162,6 @@ TEST(GroupBuildCar, TC_ProcessCarAssembleStep_runProducedCar_NormalCase) {
 TEST(GroupBuildCar, TC_ProcessCarAssembleStep_runProducedCar_ErrorCase1) {
 	CarBuilder carBuilder;
 
-	int answer = SEDAN;
 	carBuilder.processCarAssembleStep(SEDAN);
 	carBuilder.processCarAssembleStep(GM);
 	carBuilder.processCarAssembleStep(CONTINENTAL);
@@ -176,7 +174,6 @@ TEST(GroupBuildCar, TC_ProcessCarAssembleStep_runProducedCar_ErrorCase1) {
 TEST(GroupBuildCar, TC_ProcessCarAssembleStep_runProducedCar_ErrorCase2) {
 	CarBuilder carBuilder;
 
-	int answer = SEDAN;
 	carBuilder.processCarAssembleStep(SUV);
 	carBuilder.processCarAssembleStep(TOYOTA);
 	carBuilder.processCarAssembleStep(CONTINENTAL);
@@ -189,7 +186,6 @@ TEST(GroupBuildCar, TC_ProcessCarAssembleStep_runProducedCar_ErrorCase2) {
 TEST(GroupBuildCar, TC_ProcessCarAssembleStep_runProducedCar_ErrorCase3) {
 	CarBuilder carBuilder;
 
-	int answer = SEDAN;
 	carBuilder.processCarAssembleStep(TRUCK);
 	carBuilder.processCarAssembleStep(WIA);
 	carBuilder.processCarAssembleStep(CONTINENTAL);
@@ -202,7 +198,6 @@ TEST(GroupBuildCar, TC_ProcessCarAssembleStep_runProducedCar_ErrorCase3) {
 TEST(GroupBuildCar, TC_ProcessCarAssembleStep_runProducedCar_ErrorCase4) {
 	CarBuilder carBuilder;
 
-	int answer = SEDAN;
 	carBuilder.processCarAssembleStep(TRUCK);
 	carBuilder.processCarAssembleStep(TOYOTA);
 	carBuilder.processCarAssembleStep(MANDO);
@@ -215,7 +210,6 @@ TEST(GroupBuildCar, TC_ProcessCarAssembleStep_runProducedCar_ErrorCase4) {
 TEST(GroupBuildCar, TC_ProcessCarAssembleStep_runProducedCar_ErrorCase5) {
 	CarBuilder carBuilder;
 
-	int answer = SEDAN;
 	carBuilder.processCarAssembleStep(TRUCK);
 	carBuilder.processCarAssembleStep(TOYOTA);
 	carBuilder.processCarAssembleStep(BOSCH_B);
@@ -228,12 +222,68 @@ TEST(GroupBuildCar, TC_ProcessCarAssembleStep_runProducedCar_ErrorCase5) {
 TEST(GroupBuildCar, TC_ProcessCarAssembleStep_runProducedCar_ErrorCase6) {
 	CarBuilder carBuilder;
 
-	int answer = SEDAN;
 	carBuilder.processCarAssembleStep(SEDAN);
 	carBuilder.processCarAssembleStep(BROKEN);
 	carBuilder.processCarAssembleStep(MANDO);
 	carBuilder.processCarAssembleStep(MOBIS);
 	carBuilder.processCarAssembleStep(Do_Run);
+	int curStep = carBuilder.GetCurProcess();
+	EXPECT_EQ(ProcessStepInvalid, curStep);
+}
+
+TEST(GroupBuildCar, TC_ProcessCarAssembleStep_testProducedCar1) {
+	CarBuilder carBuilder;
+
+	carBuilder.processCarAssembleStep(SEDAN);
+	carBuilder.processCarAssembleStep(GM);
+	carBuilder.processCarAssembleStep(CONTINENTAL);
+	carBuilder.processCarAssembleStep(MOBIS);
+	carBuilder.processCarAssembleStep(Do_Test);
+	int curStep = carBuilder.GetCurProcess();
+	EXPECT_EQ(ProcessStepInvalid, curStep);
+}
+
+TEST(GroupBuildCar, TC_ProcessCarAssembleStep_testProducedCar2) {
+	CarBuilder carBuilder;
+
+	carBuilder.processCarAssembleStep(SUV);
+	carBuilder.processCarAssembleStep(TOYOTA);
+	carBuilder.processCarAssembleStep(MANDO);
+	carBuilder.processCarAssembleStep(MOBIS);
+	carBuilder.processCarAssembleStep(Do_Test);
+	int curStep = carBuilder.GetCurProcess();
+	EXPECT_EQ(ProcessStepInvalid, curStep);
+}
+TEST(GroupBuildCar, TC_ProcessCarAssembleStep_testProducedCar3) {
+	CarBuilder carBuilder;
+
+	carBuilder.processCarAssembleStep(TRUCK);
+	carBuilder.processCarAssembleStep(WIA);
+	carBuilder.processCarAssembleStep(MANDO);
+	carBuilder.processCarAssembleStep(MOBIS);
+	carBuilder.processCarAssembleStep(Do_Test);
+	int curStep = carBuilder.GetCurProcess();
+	EXPECT_EQ(ProcessStepInvalid, curStep);
+}
+TEST(GroupBuildCar, TC_ProcessCarAssembleStep_testProducedCar4) {
+	CarBuilder carBuilder;
+
+	carBuilder.processCarAssembleStep(TRUCK);
+	carBuilder.processCarAssembleStep(GM);
+	carBuilder.processCarAssembleStep(BOSCH_B);
+	carBuilder.processCarAssembleStep(MOBIS);
+	carBuilder.processCarAssembleStep(Do_Test);
+	int curStep = carBuilder.GetCurProcess();
+	EXPECT_EQ(ProcessStepInvalid, curStep);
+}
+TEST(GroupBuildCar, TC_ProcessCarAssembleStep_testProducedCar5) {
+	CarBuilder carBuilder;
+
+	carBuilder.processCarAssembleStep(TRUCK);
+	carBuilder.processCarAssembleStep(GM);
+	carBuilder.processCarAssembleStep(MANDO);
+	carBuilder.processCarAssembleStep(MOBIS);
+	carBuilder.processCarAssembleStep(Do_Test);
 	int curStep = carBuilder.GetCurProcess();
 	EXPECT_EQ(ProcessStepInvalid, curStep);
 }

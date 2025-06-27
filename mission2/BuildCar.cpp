@@ -104,27 +104,20 @@ bool CarBuilder::isValidCheck()
     if (stack[CarType_Q] == SEDAN && stack[brakeSystem_Q] == CONTINENTAL)
     {
         return false;
-    }
-    else if (stack[CarType_Q] == SUV && stack[Engine_Q] == TOYOTA)
+    } else if (stack[CarType_Q] == SUV && stack[Engine_Q] == TOYOTA)
+    {
+        return false;
+    }  else if (stack[CarType_Q] == TRUCK && stack[Engine_Q] == WIA)
+    {
+        return false;
+    }  else if (stack[CarType_Q] == TRUCK && stack[brakeSystem_Q] == MANDO)
+    {
+        return false;
+    }  else if (stack[brakeSystem_Q] == BOSCH_B && stack[SteeringSystem_Q] != BOSCH_S)
     {
         return false;
     }
-    else if (stack[CarType_Q] == TRUCK && stack[Engine_Q] == WIA)
-    {
-        return false;
-    }
-    else if (stack[CarType_Q] == TRUCK && stack[brakeSystem_Q] == MANDO)
-    {
-        return false;
-    }
-    else if (stack[brakeSystem_Q] == BOSCH_B && stack[SteeringSystem_Q] != BOSCH_S)
-    {
-        return false;
-    }
-    else
-    {
-        return true;
-    }
+
     return true;
 }
 
@@ -147,26 +140,31 @@ void CarBuilder::testProducedCar()
 {
     if (stack[CarType_Q] == SEDAN && stack[brakeSystem_Q] == CONTINENTAL)
     {
+        step = ProcessStep::ProcessStepInvalid;
         printf("자동차 부품 조합 테스트 결과 : FAIL\n");
         printf("Sedan에는 Continental제동장치 사용 불가\n");
     }
     else if (stack[CarType_Q] == SUV && stack[Engine_Q] == TOYOTA)
     {
+        step = ProcessStep::ProcessStepInvalid;
         printf("자동차 부품 조합 테스트 결과 : FAIL\n");
         printf("SUV에는 TOYOTA엔진 사용 불가\n");
     }
     else if (stack[CarType_Q] == TRUCK && stack[Engine_Q] == WIA)
     {
+        step = ProcessStep::ProcessStepInvalid;
         printf("자동차 부품 조합 테스트 결과 : FAIL\n");
         printf("Truck에는 WIA엔진 사용 불가\n");
     }
     else if (stack[CarType_Q] == TRUCK && stack[brakeSystem_Q] == MANDO)
     {
+        step = ProcessStep::ProcessStepInvalid;
         printf("자동차 부품 조합 테스트 결과 : FAIL\n");
         printf("Truck에는 Mando제동장치 사용 불가\n");
     }
     else if (stack[brakeSystem_Q] == BOSCH_B && stack[SteeringSystem_Q] != BOSCH_S)
     {
+        step = ProcessStep::ProcessStepInvalid;
         printf("자동차 부품 조합 테스트 결과 : FAIL\n");
         printf("Bosch제동장치에는 Bosch조향장치 이외 사용 불가\n");
     }
@@ -186,18 +184,7 @@ int CarBuilder::printQustionForCurStep() {
     return step;
 }
 
-bool CarBuilder::IsValidType(CarType type) {
-	return (type >= 1 && type <= 3);
-}
-bool CarBuilder::IsValidEngine(Engine engine) {
-	return (engine >= 0 && engine <= 4);
-}
-bool CarBuilder::IsValidBrekeSystem(brakeSystem brake) {
-	return (brake >= 0 && brake <= 3);
-}
-bool CarBuilder::IsValidSteeringSystem(SteeringSystem steering) {
-	return (steering >= 0 && steering <= 2);
-}
+
 
 bool CarBuilder::isValidAnswer(int answer) {
     bool valid = false;
