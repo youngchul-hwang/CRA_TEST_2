@@ -66,7 +66,6 @@ void CarBuilder::selectbrakeSystem(int answer)
 {
     stack[brakeSystem_Q] = answer;
     int breakSystemType = stack[brakeSystem_Q];
-    std::cout << "Brake System : " << BrakeSystemName[breakSystemType] << std::endl;
     std::cout << BrakeSystemName[breakSystemType] << "  제동장치를 선택하셨습니다.\n";
 }
 
@@ -81,12 +80,14 @@ void CarBuilder::runProducedCar()
 {
     if (isValidCheck() == false)
     {
+        step = ProcessStep::ProcessStepInvalid;
         printf("자동차가 동작되지 않습니다\n");
     }
     else
     {
         if (stack[Engine_Q] == BROKEN)
         {
+            step = ProcessStep::ProcessStepInvalid;
             printf("엔진이 고장나있습니다.\n");
             printf("자동차가 움직이지 않습니다.\n");
         }
@@ -215,7 +216,8 @@ bool CarBuilder::isValidAnswer(int answer) {
 }
 
 void CarBuilder::printErrorMessage() {
-    std::cout << errorMessageForInvalidAnswer[step];
+    if( step < errorMessageForInvalidAnswer.size())
+        std::cout << errorMessageForInvalidAnswer[step];
     delay(800);
 }
 
@@ -276,7 +278,7 @@ void delay(int ms)
     volatile int sum = 0;
     for (int i = 0; i < 1000; i++)
     {
-        for (int j = 0; j < 2500; j++)
+        for (int j = 0; j < 1000; j++)
         {
             for (int t = 0; t < ms; t++)
             {

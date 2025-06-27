@@ -9,20 +9,22 @@
 
 #define CLEAR_SCREEN "\033[H\033[2J"
 
-enum QuestionType
+enum ProcessStep
 {
-    CarType_Q = 0,
+    CarType_Q = 1,
     Engine_Q,
     brakeSystem_Q,
     SteeringSystem_Q,
     Run_Test,
-};
+    ProcessStepInvalid
+ };
 
 enum CarType
 {
     SEDAN = 1,
     SUV,
-    TRUCK
+    TRUCK,
+    CarTypeCount
 };
 const std::vector<std::string> CarName = {
     "NONE", "SEDAN", "SUV", "TRUCK"
@@ -33,7 +35,8 @@ enum Engine
     GM = 1,
     TOYOTA,
     WIA,
-    BROKEN
+    BROKEN,
+    EnginCount
 };
 const std::vector<std::string> EnginName = {
     "NONE", "GM", "WIA", "BROKEN"
@@ -43,7 +46,8 @@ enum brakeSystem
 {
     MANDO = 1,
     CONTINENTAL,
-    BOSCH_B
+    BOSCH_B,
+    brakeSystemCount
 };
 const std::vector<std::string> BrakeSystemName = {
     "NONE", "MANDO", "CONTINENTAL", "BOSCH_B"
@@ -52,10 +56,18 @@ const std::vector<std::string> BrakeSystemName = {
 enum SteeringSystem
 {
     BOSCH_S = 1,
-    MOBIS
+    MOBIS,
+    SteeringSystemCount
+
 };
 const std::vector<std::string> SteeringSystemName = {
     "NONE", "BOSCH_S", "MOBIS"
+};
+
+enum RunTestOPtion
+{
+    Do_Run = 1,
+    Do_Test
 };
 
 const std::vector< std::string> errorMessageForInvalidAnswer = {
@@ -77,12 +89,15 @@ public:
     bool isValidAnswer(int answer);
     void processCarAssembleStep(int answer);
 
+    void SetCurProcess(ProcessStep step_) { step = step_; }
+    int GetCurProcess() { return step; }
 
 private:
 	bool IsValidType(CarType type);
 	bool IsValidEngine(Engine engine);
 	bool IsValidBrekeSystem(brakeSystem brake);
 	bool IsValidSteeringSystem(SteeringSystem steering);
+    bool isValidCheck();
 
     void printCarTypeOptions(void);
     void printfEngintTypeOptions(void);
@@ -97,8 +112,7 @@ private:
 
     void runProducedCar();
     void testProducedCar();
-
-    bool isValidCheck();
+   
     void printSeletedItems();
     void printErrorMessage();
 
