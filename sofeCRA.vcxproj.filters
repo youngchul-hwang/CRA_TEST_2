@@ -21,15 +21,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="cal.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="test_cal.cpp">
-      <Filter>테스트</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gtest\gtest-all.cc">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -40,6 +31,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="mission2\BuildCar.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="mission2\test_buildcar.cpp">
+      <Filter>테스트</Filter>
+    </ClCompile>
+    <ClCompile Include="mission2\main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

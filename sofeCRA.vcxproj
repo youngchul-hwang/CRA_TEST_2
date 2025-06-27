@@ -131,12 +131,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cal.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="mission1\mission1.cpp" />
     <ClCompile Include="mission2\BuildCar.cpp" />
-    <ClCompile Include="test_cal.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> %(AdditionalOptions)</AdditionalOptions>
+    <ClCompile Include="mission2\main.cpp" />
+    <ClCompile Include="mission2\test_buildcar.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">  %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

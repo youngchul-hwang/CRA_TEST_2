@@ -59,31 +59,26 @@ const std::vector<std::string> SteeringSystemName = {
 };
 
 const std::vector< std::string> errorMessageForInvalidAnswer = {
-"ERROR :: 차량 타입은 1 ~ 3 범위만 선택 가능\n",
-"ERROR :: 엔진은 1 ~ 4 범위만 선택 가능\n",
-"ERROR :: 제동장치는 1 ~ 3 범위만 선택 가능\n",
-"ERROR :: 조향장치는 1 ~ 2 범위만 선택 가능\n",
-"ERROR :: Run 또는 Test 중 하나를 선택 필요\n"
+    "ERROR :: 차량 타입은 1 ~ 3 범위만 선택 가능\n",
+    "ERROR :: 엔진은 1 ~ 4 범위만 선택 가능\n",
+    "ERROR :: 제동장치는 1 ~ 3 범위만 선택 가능\n",
+    "ERROR :: 조향장치는 1 ~ 2 범위만 선택 가능\n",
+    "ERROR :: Run 또는 Test 중 하나를 선택 필요\n"
 };
+
+void delay(int ms);
 
 class CarBuilder {
 public:
-	CarBuilder() = default;
+    CarBuilder() : step{ CarType_Q }, stack{ 0, } {};
 	~CarBuilder() = default;
 
-    void printQustionForCurStep();
+    int printQustionForCurStep();
+    bool isValidAnswer(int answer);
+    void processCarAssembleStep(int answer);
 
-	bool AssembleCar(
-		CarType type, Engine engine, 
-		brakeSystem brake, SteeringSystem steering);
 
 private:
-	bool IsValidParameters(
-		CarType type, Engine engine,
-		brakeSystem brake, SteeringSystem steering);
-	bool IsValidItemSet(CarType type, Engine engine,
-		brakeSystem brake, SteeringSystem steering);
-
 	bool IsValidType(CarType type);
 	bool IsValidEngine(Engine engine);
 	bool IsValidBrekeSystem(brakeSystem brake);
@@ -95,11 +90,22 @@ private:
     void printSteeringSystemOptions(void);
     void printRunTestOptions(void);
 
+    void selectCarType(int answer);
+    void selectEngine(int answer);
+    void selectbrakeSystem(int answer);
+    void selectSteeringSystem(int answer);
+
+    void runProducedCar();
+    void testProducedCar();
+
+    bool isValidCheck();
+    void printSeletedItems();
+    void printErrorMessage();
+
 private:
     int step;
+    int stack[10];
 
 private:
-
-
 
 };
